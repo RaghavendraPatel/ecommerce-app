@@ -5,6 +5,8 @@ import { RootState } from '../store/store';
 import { addProduct } from '../reducers/productSlice';
 
 import './form.scss';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 interface AddProductProps {
     hideForm: () => void;
@@ -19,6 +21,7 @@ const AddProduct: React.FC<AddProductProps> = ({hideForm}) => {
     const [image, setImage] = useState<string>('');
 
     const addImage = () => {
+        //check if the image url is valid
         const regex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
         if (image && regex.test(image)) {
             setImages([...images, image]);
@@ -29,6 +32,30 @@ const AddProduct: React.FC<AddProductProps> = ({hideForm}) => {
             setImage('');
         }
     };
+
+    //add product to the database
+    const handleAddProduct = () => {
+        axios.post('https://my-json-server.typicode.com/raghavendraPatel/db/products', {
+            id, 
+            name,
+            price:price||0,
+            description,
+            images,
+        }).then((response) => {
+            console.log(response);
+            dispatch(addProduct({
+                id, 
+                name,
+                price:price||0,
+                description,
+                images,
+            }));
+        }).catch((error) => {
+            console.log(error);
+            toast.error(error.message);
+        });
+        hideForm();
+    }
 
   return (
     <div className='AddProductForm form'>
@@ -96,16 +123,7 @@ const AddProduct: React.FC<AddProductProps> = ({hideForm}) => {
                 </div>
                 <button 
                     className='btn btn-primary'
-                    onClick={() => {
-                        dispatch(addProduct({
-                            id, 
-                            name,
-                            price:price||0,
-                            description,
-                            images,
-                        }));
-                        hideForm();
-                    }}
+                    onClick={handleAddProduct}
                     >Add Product</button>
             </div>
         </div>

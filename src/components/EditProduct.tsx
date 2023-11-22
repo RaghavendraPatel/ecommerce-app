@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateProduct } from '../reducers/productSlice';
 import './form.scss';
+import axios from 'axios';
 interface Product {
     id: number;
     name: string;
@@ -34,6 +35,28 @@ const EditProduct: React.FC<EditProductProps> = ({ product , hideForm }) => {
             setImage('');
         }
     };
+
+    const handleUpdate = () => {
+        axios.put(`https://my-json-server.typicode.com/raghavendraPatel/db/products/${product.id}`, {
+            id: product.id,
+            name,
+            price,
+            description,
+            images,
+        }).then((response) => {
+            console.log(response.data);
+            dispatch(updateProduct({
+                id: product.id,
+                name,
+                price,
+                description,
+                images,
+            }));
+        }).catch((error) => {
+            console.log(error);
+        });
+        hideForm();
+    }
 
     return (
         <div className='ProductUpdateForm form'>
@@ -98,16 +121,7 @@ const EditProduct: React.FC<EditProductProps> = ({ product , hideForm }) => {
                 </div>
                 <button 
                     className='btn btn-primary'
-                    onClick={() => {
-                        dispatch(updateProduct({
-                            id: product.id,
-                            name,
-                            price,
-                            description,
-                            images,
-                        }));
-                        hideForm();
-                    }}
+                    onClick={handleUpdate}
                     >Update</button>
             </div>
         </div>

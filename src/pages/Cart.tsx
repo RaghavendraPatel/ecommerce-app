@@ -10,6 +10,7 @@ const Cart: React.FC = () => {
     const cart = useSelector((state:RootState) => state.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    // format the price 
     const formatCurerency = (price: number) => {
         return new Intl.NumberFormat('en-IN', {
           style: 'currency',
