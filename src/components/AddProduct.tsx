@@ -35,6 +35,14 @@ const AddProduct: React.FC<AddProductProps> = ({hideForm}) => {
 
     //add product to the database
     const handleAddProduct = () => {
+        if(!name || !description) {
+            toast.error('Please fill all the fields');
+            return;
+        }
+        if(images.length === 0) {
+            toast.error('Please add atleast one image');
+            return;
+        }
         axios.post('https://my-json-server.typicode.com/raghavendraPatel/db/products', {
             id, 
             name,

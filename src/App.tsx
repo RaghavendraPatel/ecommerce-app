@@ -18,6 +18,7 @@ import Checkout from './pages/Checkout';
 
 function App() {
   const dispatch = useDispatch()
+  // fetch products
   const fetchProducts = async () => {
     try {
       dispatch(fetchStart());
