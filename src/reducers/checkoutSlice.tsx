@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {toast} from 'react-toastify';
 
+// Define a type for the slice state
 type Item = {
     id: number;
     name: string;
@@ -12,6 +13,8 @@ enum checkoutType {
     'cart',
     'product',
 }
+
+//create interface for checkout state
 interface CheckoutState {
     items: Item[];
     totalQuantity: number;
@@ -19,6 +22,7 @@ interface CheckoutState {
     type: checkoutType;
 }
 
+// Define the initial state using the interface
 const initialState: CheckoutState = {
     items: [],
     totalQuantity: 0,
@@ -30,7 +34,9 @@ const initialState: CheckoutState = {
 const checkoutSlice = createSlice({
     name: 'checkout',
     initialState,
+    // Define reducers and generate associated actions
     reducers: {
+        // initiate checkout for single product
         initiateCheckoutSingleItem(state:CheckoutState, action: PayloadAction<Item>) {
             const { id, name, price, quantity, image} = action.payload;
             state.items = [{ id, name, price, quantity, image}];
@@ -38,6 +44,7 @@ const checkoutSlice = createSlice({
             state.totalPrice = price * quantity;
             state.type = checkoutType.product;
         },
+        // initiate checkout for cart
         initiateCheckoutMultipleItems(state:CheckoutState, action: PayloadAction<Item[]>) {
             const items = action.payload;
             state.items = items;
@@ -45,12 +52,14 @@ const checkoutSlice = createSlice({
             state.totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0);
             state.type = checkoutType.cart;
         },
+        // complete checkout
         completeCheckout(state:CheckoutState) {
             state.items = [];
             state.totalQuantity = 0;
             state.totalPrice = 0;
-            toast.success('Checkout completed');
+            toast.success('Product(s) purchased successfully');
         },
+        // clear checkout
         clearCheckout(state:CheckoutState) {
             state.items = [];
             state.totalQuantity = 0;
@@ -60,5 +69,6 @@ const checkoutSlice = createSlice({
     },
 });
 
+// Export actions
 export const {initiateCheckoutMultipleItems,initiateCheckoutSingleItem,completeCheckout,clearCheckout} = checkoutSlice.actions;
 export default checkoutSlice.reducer;

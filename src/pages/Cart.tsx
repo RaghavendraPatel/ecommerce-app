@@ -43,7 +43,13 @@ const Cart: React.FC = () => {
                                     <div className="quantity__control">
                                         <button className="btn btn-primary" onClick={() => dispatch(removeOneItem(item.id))}>-</button>
                                         <div className="product__quantity">{item.quantity}</div>
-                                        <button className="btn btn-primary" onClick={() => dispatch(addItem(item))}>+</button>
+                                        <button className="btn btn-primary" onClick={() => dispatch(addItem({
+                                            id: item.id,
+                                            name: item.name,
+                                            image: item.image,
+                                            price: item.price,
+                                            quantity: 1,
+                                        }))}>+</button>
                                     </div>
                                     <button className="btn btn-danger" onClick={() => dispatch(removeItem(item.id))}>Remove</button>
                                     <Link to={`/product/${item.id}`}>View Product Page</Link>
