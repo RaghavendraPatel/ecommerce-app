@@ -1,0 +1,92 @@
+nav{
+    display: flex;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #f57224;
+    gap : 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    .nav__logo{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 1.2rem;
+        color: white;
+        i{
+            font-size: 2.5rem;
+        }
+    }
+    .nav__contents{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        .nav__links{
+            display: flex;
+            align-items: center;
+            a{
+                color: white;
+                font-size: 1rem;
+                text-decoration: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+                &:hover{
+                    background-color: #fff;
+                    color: #f57224;
+                }
+            }
+            .active{
+                background-color: #fff;
+                color: #f57224;
+            
+            }
+        }
+        .nav__right{
+            display: flex;
+            gap: 40px;
+            .cart{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                position: relative;
+                a{
+                    color: white;
+                    text-decoration: none;
+                }
+                .cart__icon{
+                    font-size: 1.5rem;
+                }
+                .cart__count{
+                    background-color: #fff;
+                    position: absolute;
+                    top: -5px;
+                    right: -5px;
+                    color: #f57224;
+                    padding: 2px 5px;
+                    border-radius: 50%;
+                    font-size: 0.7rem;
+                    font-weight: 600;
+                }
+                &:hover{
+                    .cart__icon{
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+            .nav__user{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: white;
+                .nav__user__avatar{
+                    font-size: 1.5rem;
+                }
+                &:hover{
+                  cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,145 @@
+.Product{
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    gap:20px;
+    .product__container{
+        background-color: white;
+        width: 70vw;
+        display: flex;
+        padding: 20px;
+        box-shadow: #b9b9b9 0px 0px 10px 1px ;
+        .product__container__left{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            .product__container__left__image{
+                width: fit-content;
+                padding: 40px;
+                img{
+                    width: 25vw;
+                    height: 25vw;
+                    object-fit: contain;
+                }
+            }
+            .product__container__left__images{
+                display: flex;
+                gap: 20px;
+                img{
+                    width: 50px;
+                    height: 50px;
+                    object-fit: contain;
+                    border: 1px solid rgb(197, 197, 197);
+                    cursor: pointer;
+                    border-radius: 5px;
+                }
+                .active{
+                    border: 1px solid #f57124;
+                    box-shadow: 0px 0px 5px 1px #f5712498;
+                }
+            }
+        }
+        .product__container__right{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .product__rating{
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                font-size: .8rem;
+                margin-top: -10px;
+                .total-ratings{
+                    color: rgb(23, 126, 222);
+                    font-weight: 600;
+                
+                }
+            }
+            .product__price{
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                .final-price{
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    .discount{
+                        background-color: red;
+                        color: white;
+                        padding: 5px 10px;
+                        border-radius: 5px;
+                        font-size: .8rem;
+                        font-weight: 700;
+                    }
+                    h3{
+                        color: #f57124;
+                    }
+                }
+                .mrp{
+                    text-decoration: line-through;
+                    color: rgb(151, 153, 154);
+                    font-size: .8rem;
+                }
+            }
+            .product__description{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                ul{
+                    padding: 0 40px;
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                }
+            }
+        }
+    }
+    .checkout{
+        background-color: white;
+        box-shadow: #b9b9b9 0px 0px 10px 1px ;
+        width: 15vw;
+        height: fit-content;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 100px;
+        gap: 20px;
+        .price{
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .delivery__options{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .delivery__option{
+                display: flex;
+                gap: 10px;
+                align-items: center;
+
+                input[type="radio"]{
+                    cursor: pointer;
+                }
+            }
+
+        }
+
+        .checkout__btn{
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f57124;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            &:hover{
+                background-color: #f57124d9;
+            }
+        }
+    }
+}

@@ -1,0 +1,98 @@
+.products__container{
+    width: 100vw;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .products{
+        width: 80vw;
+        padding: 20px;
+        background-color: white;
+        box-shadow: #b9b9b9 0px 0px 10px 1px ;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .products__header{
+            display: flex;
+            justify-content: space-between;
+            border-bottom:1px solid #b9b9b9;
+            padding-bottom: 20px;
+            .add-btn{
+                padding: 10px 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                &:hover{
+                    background-color: #ddd;
+                }
+            }
+        }
+        .products__list{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+    
+            @media screen and (max-width: 1380px){
+                grid-template-columns: repeat(3, 1fr);
+            }
+            @media screen and (max-width: 1080px){
+                grid-template-columns: repeat(2, 1fr);
+            }
+            @media screen and (max-width: 700px){
+                grid-template-columns: repeat(1, 1fr);
+            }
+            .card{
+                margin: 0 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .clickable{
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: column;
+                    .product__image{
+                        height: 200px;
+                        object-fit: cover;
+                        align-self: center;
+                        background-size: cover;
+                        background-position: center;
+                        margin-bottom: 10px;
+                    }
+                    .product__title{
+                        font-size: 18px;
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                    }
+                    .product__price{
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: #f57224;
+                    }
+                }
+    
+                .product__btns{
+                    display: flex;
+                    // justify-content: space-between;
+                    align-items: center;
+                    margin-top: 10px;
+                    gap: 10px;
+                    justify-self: flex-end;
+                    .btn{
+                        padding: 10px 20px;
+                        width: 50%;
+                        border: 1px solid #ddd;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        &:hover{
+                            background-color: #ddd;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
