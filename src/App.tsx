@@ -15,21 +15,36 @@ import Cart from './pages/Cart'
 import Sell from './pages/Sell';
 import Product from './pages/Product';
 import Checkout from './pages/Checkout';
+import { fetchCart } from './reducers/cartSlice';
 
 function App() {
   const dispatch = useDispatch()
   // fetch products
   const fetchProducts = async () => {
     try {
-      dispatch(fetchStart());
-      const response = await axios.get('https://my-json-server.typicode.com/raghavendraPatel/db/products');
-      dispatch(fetchSuccess(response.data));
+      if (localStorage.getItem('products')) {
+        const products = JSON.parse(localStorage.getItem('products') || '{}');
+        dispatch(fetchSuccess(products));
+        return;
+      }else{
+        dispatch(fetchStart());
+        const response = await axios.get('https://my-json-server.typicode.com/raghavendraPatel/db/products');
+        dispatch(fetchSuccess(response.data));
+        localStorage.setItem('products', JSON.stringify(response.data));
+      }
     } catch (error) {
       dispatch(fetchFail(error.message));
     }
   }
+  const getCart = () => {
+    if (localStorage.getItem('cart')) {
+      const cartItems = JSON.parse(localStorage.getItem('cart') || '{}');
+      dispatch(fetchCart(cartItems));
+    }
+  }
   useEffect(() => {
     fetchProducts();
+    getCart();
   }
   , []);
 

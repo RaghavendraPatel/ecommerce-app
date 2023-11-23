@@ -27,6 +27,27 @@
                     background-color: #ddd;
                 }
             }
+            .sort{
+                display: flex;
+                gap: 10px;
+                .sort__select{
+                    padding: 10px 20px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+                .clear button{
+                    padding: 10px 20px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    &:hover{
+                        background-color: #ddd;
+                    }
+                }
+            }
         }
         .products__list{
             display: grid;

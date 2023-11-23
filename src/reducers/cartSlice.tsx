@@ -54,6 +54,7 @@ const cartSlice = createSlice({
             }
             state.totalQuantity += quantity;
             state.totalPrice += price * quantity;
+            localStorage.setItem('cart', JSON.stringify(state.items));
             toast.success('Item added to cart');
         },
         //remove one item from cart
@@ -71,6 +72,7 @@ const cartSlice = createSlice({
             }
             state.totalQuantity--;
             state.totalPrice -= existingItem!.price;
+            localStorage.setItem('cart', JSON.stringify(state.items));
         },
         //remove item from cart
         removeItem(state:CartState, action: PayloadAction<number>) {
@@ -80,6 +82,7 @@ const cartSlice = createSlice({
                 state.items = state.items.filter((item) => item.id !== id);
                 state.totalQuantity -= existingItem.quantity;
                 state.totalPrice -= existingItem.price * existingItem.quantity;
+                localStorage.setItem('cart', JSON.stringify(state.items));
                 toast.info('Item removed from cart');
             }
         },
@@ -88,11 +91,12 @@ const cartSlice = createSlice({
             state.items = [];
             state.totalQuantity = 0;
             state.totalPrice = 0;
+            localStorage.removeItem('cart');
         },
     },
 });
 
 // Export actions and reducer 
-export const { addItem, removeItem, removeOneItem, clearCart } = cartSlice.actions;
+export const { addItem, removeItem, removeOneItem, clearCart,fetchCart } = cartSlice.actions;
 const cartReducer = cartSlice.reducer;
 export default cartReducer;
