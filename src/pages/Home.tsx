@@ -20,6 +20,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     document.title = 'React Commerce | Home';
+    dispatch(clearSort());
   }, []);
   return (
     <div className='Home'>
